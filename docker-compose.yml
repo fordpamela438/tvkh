@@ -1,0 +1,22 @@
+services:
+  web:
+    image: ghcr.io/macosupdate/tvkh
+    environment:
+      PHP_POST_MAX_SIZE: "100M"
+      PHP_UPLOAD_MAX_FILESIZE: "100M"
+      PHP_SESSION_COOKIE_HTTPONLY: "1"
+      WP_HOME: ${WP_HOME}
+      WP_SITEURL: ${WP_HOME}
+      R2_ACCESS_KEY: ${R2_ACCESS_KEY}
+      R2_SECRET_KEY: ${R2_SECRET_KEY}
+      R2_ENDPOINT: ${R2_ENDPOINT}
+      R2_BUCKET: ${R2_BUCKET}
+      DB_PATH: ${DB_PATH}
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    depends_on:
+      - web
+    command: tunnel --no-autoupdate run
+    environment:
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
