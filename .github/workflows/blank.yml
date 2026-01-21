@@ -24,6 +24,7 @@ jobs:
       TUNNEL_TOKEN: ${{ secrets.TUNNEL_TOKEN }}
       TS_CLIENT_ID: ${{ secrets.TS_CLIENT_ID }}
       TS_CLIENT_SECRET: ${{ secrets.TS_CLIENT_SECRET }}
+      WP_HOME: ${{ secrets.WP_HOME }}
 
     steps:
       - name: Checkout repo
